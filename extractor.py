@@ -16,8 +16,16 @@ def extractor(fileurl):
 def sentenceExtractor(content):
     oraciones = re.findall(r'\—[A-Z\sÑ\.\,ÁÉÍÓÚ]*([A-Z\sÑ\.\,ÁÉÍÓÚ][a-zA-Z\s\.áéíóúÁÉÍÓÚ\,\¿\?ñÑ0-9\'\"\:]*)', content)
     
-    for oracion in oraciones:
-        print(oraciones)
+    #Sentece cleaning: Eliminar el footer del pdf
+    for idx,oracion in enumerate(oraciones):
+        if 'Acta de la sesión ordinaria' in oracion:
+            oraciones[idx] = oracion[:oracion.index('Acta de la sesión ordinaria')]
+    return oraciones
 
-content = extractor(fileurl1)
-oraciones = sentenceExtractor(content)
+def pdfSentenceExtractor(file):
+    return sentenceExtractor(extractor(file))
+
+if __name__ == "__main__":
+    res = pdfSentenceExtractor(fileurl1)
+    print(res)
+
