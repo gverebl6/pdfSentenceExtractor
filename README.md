@@ -1,2 +1,2 @@
 # pdfSentenceExtractor
-Sentence extractor for pdf of Asamblea Panama and Asamblea UTP
+Sentence extractor for pdf
